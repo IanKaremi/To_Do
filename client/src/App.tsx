@@ -1,61 +1,53 @@
-import { useState } from 'react'
-import beaver from './assets/beaver.svg'
-import { hcWithType } from 'server/dist/client'
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
 
-type ResponseType = Awaited<ReturnType<typeof client.hello.$get>>;
+// import { hcWithType } from 'server/dist/client'
 
-const client = hcWithType(SERVER_URL);
+// const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
+
+// type ResponseType = Awaited<ReturnType<typeof client.hello.$get>>;
+
+// const client = hcWithType(SERVER_URL);
 
 function App() {
-  const [data, setData] = useState<Awaited<ReturnType<ResponseType["json"]>> | undefined>()
+  //const [data, setData] = useState<Awaited<ReturnType<ResponseType["json"]>> | undefined>()
 
-  async function sendRequest() {
-    try {
-      const res = await client.hello.$get()
-      if (!res.ok) {
-        console.log("Error fetching data")
-        return
-      }
-      const data = await res.json()
-      setData(data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // async function sendRequest() {
+  //   try {
+  //     const res = await client.hello.$get()
+  //     if (!res.ok) {
+  //       console.log("Error fetching data")
+  //       return
+  //     }
+  //     const data = await res.json()
+  //     setData(data)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   return (
-    <div className="max-w-xl mx-auto flex flex-col gap-6 items-center justify-center min-h-screen">
-      <a href="https://github.com/stevedylandev/bhvr" target="_blank">
-        <img
-          src={beaver}
-          className="w-16 h-16 cursor-pointer"
-          alt="beaver logo"
-        />
-      </a>
-      <h1 className="text-5xl font-black">bhvr</h1>
-      <h2 className="text-2xl font-bold">Bun + Hono + Vite + React</h2>
-      <p>A typesafe fullstack monorepo</p>
-      <div className='flex items-center gap-4'>
-        <button
-          onClick={sendRequest}
-          className="bg-black text-white px-2.5 py-1.5 rounded-md"
-        >
-          Call API
-        </button>
-        <a target='_blank' href="https://bhvr.dev" className='border-1 border-black text-black px-2.5 py-1.5 rounded-md'>
-          Docs
-        </a>
+    <div className="min-h-screen flex flex-col text-white text-center">
+      <div className="hover:border-green-500 mx-auto my-auto  p-4 px-12 rounded-lg drop-shadow-2xl bg-black/10 backdrop-blur-lg">
+         <h1 className="text-5xl font-bold">Listicle</h1>
+         <h2>Organize Your Life.</h2>
+         <div className="flex flex-col my-4">
+            <div className="bg-zinc-900/50 rounded-lg p-4 px-8 text-left">
+              <p className="font-bold text-xl">Your Task Name.</p>
+              <p className="text-sm">Added: 1-1-2025 8:10AM</p>
+              <div className="flex gap-1 justify-between pt-2">
+                <button onClick={()=>console.log("Complete Clicked")} className="rounded-lg p-1 font-semibold bg-green-500/30 flex-1/2">Complete</button>
+                <button onClick={()=>console.log("Delete Clicked")} className="rounded-lg p-1 font-semibold bg-red-500/30 flex-1/2">Delete</button>
+              </div>
+              
+            </div>
+         </div>
+         
+         <form className="flex gap-2 w-full justify-between">
+          <input type="text" placeholder="Add a task.." className="flex-auto w-2/3"/>
+          <button type="submit" className="bg-zinc-900/50 px-2 py-1 rounded-lg flex-auto w-1/3">Add</button>
+         </form>
+         
       </div>
-        {data && (
-          <pre className="bg-gray-100 p-4 rounded-md">
-            <code>
-            Message: {data.message} <br />
-            Success: {data.success.toString()}
-            </code>
-          </pre>
-        )}
     </div>
   )
 }
