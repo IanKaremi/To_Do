@@ -27,16 +27,16 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col text-white text-center">
-      <div className="hover:border-green-500 mx-auto my-auto  p-4 px-12 rounded-lg drop-shadow-2xl bg-black/10 backdrop-blur-lg">
+      <div className="hover:border-green-500 mx-auto my-auto w-2/3  p-4 px-12 rounded-lg drop-shadow-2xl bg-black/10 backdrop-blur-lg">
          <h1 className="text-5xl font-bold">Listicle</h1>
          <h2>Organize Your Life.</h2>
-         <div className="flex flex-col my-4">
+         <div className="flex flex-col my-4"> {/*this is the container for our list items*/}
             <div className="bg-zinc-900/50 rounded-lg p-4 px-8 text-left">
               <p className="font-bold text-xl">Your Task Name.</p>
               <p className="text-sm">Added: 1-1-2025 8:10AM</p>
               <div className="flex gap-1 justify-between pt-2">
-                <button onClick={()=>console.log("Complete Clicked")} className="rounded-lg p-1 font-semibold bg-green-500/30 flex-1/2">Complete</button>
-                <button onClick={()=>console.log("Delete Clicked")} className="rounded-lg p-1 font-semibold bg-red-500/30 flex-1/2">Delete</button>
+                <button onClick={()=>console.log("Complete Clicked")} className="rounded-lg p-1 font-semibold bg-blue-500/30 hover:bg-blue-500 flex-1/2">Complete</button>
+                <button onClick={()=>console.log("Delete Clicked")} className="rounded-lg p-1 font-semibold bg-red-500/30  hover:bg-red-500 flex-1/2">Delete</button>
               </div>
               
             </div>
@@ -44,7 +44,7 @@ function App() {
          
          <form className="flex gap-2 w-full justify-between">
           <input type="text" placeholder="Add a task.." className="flex-auto w-2/3"/>
-          <button type="submit" className="bg-zinc-900/50 px-2 py-1 rounded-lg flex-auto w-1/3">Add</button>
+          <button type="submit" className="bg-zinc-900/50 hover:bg-zinc-600 px-2 py-1 rounded-lg flex-auto w-1/3">Add</button>
          </form>
          
       </div>
