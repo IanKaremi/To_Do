@@ -26,6 +26,12 @@ function App() {
   // }
 
 
+  const handleForm = (formdata : FormData) =>{
+    const data = formdata.get("task")
+    alert(`You Clicked submit, Message '${data}'`)
+  }
+
+
 
   return (
     <div className="min-h-screen flex flex-col text-white text-center">
@@ -36,8 +42,8 @@ function App() {
           <List/>
          </div>
          
-         <form className="flex gap-2 w-full justify-between">
-          <input type="text" placeholder="Add a task.." className="flex-auto w-2/3"/>
+         <form className="flex gap-2 w-full justify-between" action={handleForm}>
+          <input type="text" name="task" placeholder="Add a task.." className="flex-auto w-2/3"/>
           <button type="submit" className="bg-zinc-900/50 hover:bg-zinc-600 px-2 py-1 rounded-lg flex-auto w-1/3">Add</button>
          </form>
          
