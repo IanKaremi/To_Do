@@ -19,4 +19,14 @@ export const app = new Hono()
 	return c.json(data, { status: 200 });
 });
 
+app.post("/add", async (c) => {
+  const body = await c.req.json();
+  console.log("Received task:", body.task); // logs the sent data
+  const data: ApiResponse = {
+    message: "Task received!",
+    success: true,
+  };
+  return c.json(data, { status: 200 });
+});
+
 export default app;
