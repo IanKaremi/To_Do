@@ -1,16 +1,41 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import type { ApiResponse } from "shared/dist";
+import { SQL, sql } from "bun";
+
+
 
 export const app = new Hono()
 
 .use(cors())
 
-.get("/", (c) => {
+const db = new SQL({
+	url:"",
+	hostname:"",
+	port:"",
+	database:"",
+	username:"",
+	password:"",
+
+	max: 5,
+	idleTimeout: 30,
+	maxLifetime: 0,
+	connectionTimeout: 30,
+
+	onconnect(client) {
+		console.log("DB Connected.")
+	},
+	onclose(client) {
+		console.log("DB disconnected.")
+	},
+
+});
+
+app.get("/", (c) => {
 	return c.text("Hello Hono!");
 })
 
-.get("/hello", async (c) => {
+app.get("/hello", async (c) => {
 	const data: ApiResponse = {
 		message: "Hello BHVR!",
 		success: true,
